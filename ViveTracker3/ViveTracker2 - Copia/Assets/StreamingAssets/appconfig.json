@@ -1,0 +1,18 @@
+{
+    "tempoDeJogo": 30,
+    "velocidadeQuedaRosa": 0.1,
+    "velocidadeLateralRosa": 0.2,
+    "velocidadeQuedaAzul": 0.3,
+    "velocidaLateralAzul": 0.2,
+    "velocidadeQuedaVerde": 0.1,
+    "velocidadeLateralVerde": 0.5,
+    "tamanhoMinRosa": 0.08,
+    "tamanhoMaxRosa": 0.12,
+    "tamanhoMinAzul": 0.08,
+    "tamanhoMaxAzul": 0.12,
+    "tamanhoMinVerde": 0.08,
+    "tamanhoMaxVerde": 0.12,
+    "tempoDeSpawnMinimo": 0.5,
+    "tempoDeSpawnMaximo": 1,
+    "tamanhoCamera": 0.68
+}
