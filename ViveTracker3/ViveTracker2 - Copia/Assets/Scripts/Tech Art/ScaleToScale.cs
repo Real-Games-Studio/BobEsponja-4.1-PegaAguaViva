@@ -9,6 +9,7 @@ public class ScaleToScale : MonoBehaviour
     public Vector3 endScale;
     public float interval;
     public float intialDelay;
+    public Ease ease =  Ease.InOutQuad;
 
     private void OnEnable()
     {
@@ -21,6 +22,6 @@ public class ScaleToScale : MonoBehaviour
 
         yield return new WaitForSeconds(intialDelay);
 
-        transform.DOScale(endScale, interval).SetEase(Ease.InOutQuad);
+        transform.DOScale(endScale, interval).SetEase(ease);
     }
 }
