@@ -1,9 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] objectsToSpawn;
     public bool spawnObjects = false;
 
+    public Volume postProcessing;
+    float transitionValue = 0f;
+    public AudioSource audio;
+
     private Coroutine spawnCoroutine;
     private Camera mainCamera;
 
@@ -27,12 +32,13 @@ public class GameManager : MonoBehaviour
     public GameObject TimeUpScreen;
     public GameObject CongratulationsScreen;
 
+    public Image timer;
+
     private float minSpawnTime;
     private float maxSpawnTime;
 
     void Awake()
     {
-        // Implementação do padrão Singleton
         if (Instance == null)
         {
             Instance = this;
@@ -72,19 +78,16 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator SpawnObjects()
     {
-        // Define os pesos para cada objeto
         float[] spawnWeights = { 0.8f, 0.1f, 0.1f };
 
         while (true)
         {
-            // Espera um intervalo aleatório entre minSpawnTime e maxSpawnTime
-            float waitTime = Random.Range(minSpawnTime, maxSpawnTime);
+            float waitTime = UnityEngine.Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(waitTime);
 
-            // Gera um objeto aleatório no topo da tela, fora da visão da câmera
             Vector3 spawnPosition = GetRandomSpawnPosition();
             GameObject objectToSpawn = GetRandomObjectByWeight(spawnWeights);
-            Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+            Instantiate(objectToSpawn, spawnPosition, Quaternion.Euler(0, 20f, UnityEngine.Random.Range(0f, -20f)));
         }
     }
 
@@ -96,7 +99,7 @@ public class GameManager : MonoBehaviour
             totalWeight += weight;
         }
 
-        float randomValue = Random.Range(0f, totalWeight);
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
         float cumulativeWeight = 0f;
 
         for (int i = 0; i < weights.Length; i++)
@@ -109,21 +112,17 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Retorna o último objeto como fallback (não deve acontecer se os pesos estiverem corretos)
         return objectsToSpawn[objectsToSpawn.Length - 1];
     }
 
     Vector3 GetRandomSpawnPosition()
     {
-        // Obtém os limites da câmera
         float cameraHeight = 2f * mainCamera.orthographicSize;
         float cameraWidth = cameraHeight * mainCamera.aspect;
 
-        // Calcula a posição Y logo acima da câmera
         float spawnY = mainCamera.transform.position.y + (cameraHeight / 2);
 
-        // Calcula uma posição X aleatória dentro dos limites da câmera
-        float spawnX = Random.Range(mainCamera.transform.position.x - (cameraWidth / 2), mainCamera.transform.position.x + (cameraWidth / 2));
+        float spawnX = UnityEngine.Random.Range(mainCamera.transform.position.x - (cameraWidth / 2), mainCamera.transform.position.x + (cameraWidth / 2));
 
         return new Vector3(spawnX, spawnY, 0);
     }
@@ -134,10 +133,9 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             currentTime--;
+            timer.fillAmount = 1 - (float) currentTime / (float) startTime; 
             UpdateTimeText();
-            //Debug.Log("Tempo restante: " + currentTime);
         }
-        //Debug.Log("Tempo esgotado!");
         spawnObjects = false;
 
         for(int i = 0; i < colliders.Length; i++)
@@ -146,6 +144,12 @@ public class GameManager : MonoBehaviour
         }
         
         TimeUpScreen.SetActive(true);
+        audio.Play();
+        DOTween.To(() => transitionValue, x => transitionValue = x, 1f, 0.2f)
+        .OnUpdate(() => 
+        {
+            postProcessing.weight = transitionValue;
+        });
         yield return new WaitForSeconds(5);
         TimeUpScreen.SetActive(false);
         CongratulationsScreen.SetActive(true);

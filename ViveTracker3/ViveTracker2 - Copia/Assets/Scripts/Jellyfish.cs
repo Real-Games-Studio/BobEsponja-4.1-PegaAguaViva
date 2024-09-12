@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
+using DG.Tweening;
+using System.Collections.Generic;
 
 public class Jellyfish : MonoBehaviour
 {
@@ -13,18 +11,22 @@ public class Jellyfish : MonoBehaviour
     [SerializeField] bool Collected;
     [SerializeField] Transform Bolha;
     public int score;
+    public GameObject catchParticle;
+    public List<AudioSource> feedbackAudio;
 
     float speed;
     bool speedDown;
 
-    public float fallSpeed = 2f; // Velocidade de queda
-    public float lateralSpeed = 0.5f; // Velocidade lateral máxima
-
+    public float fallSpeed = 2f;
+    public float lateralSpeed = 0.5f;
     private float currentLateralSpeed;
     private Camera mainCamera;
     private float lowerBound;
+    private Vector3 currentVelocity;
 
-    // Start is called before the first frame update
+    private GameObject spawnedParticle;
+    private Tween currentTween;
+
     void Start()
     {
         collider = GetComponent<Collider2D>();
@@ -60,48 +62,66 @@ public class Jellyfish : MonoBehaviour
             float rng = Random.Range(JSONFile.Configclass.tamanhoMinVerde, JSONFile.Configclass.tamanhoMaxVerde);
             transform.localScale = new Vector3(rng, rng, 0.5f);
         }
+
+        Material instance = GetComponent<SpriteRenderer>().material;
+        GetComponent<SpriteRenderer>().material = instance;
     }
 
     private void Update()
     {
         if (Collected)
         {
-            //if(Vector2.Distance(transform.position, Bolha.position) > 0.1f)
-            //{
-            //    transform.position = Vector2.MoveTowards(transform.position, Bolha.position, speed * Time.deltaTime);
-            //}
-            //else
-            //{
-            if(score > 0)
+            if (score > 0)
             {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                if (currentTween == null)
+                currentTween = transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InOutQuad).OnStart(() =>
+                {
+                    if (spawnedParticle == null)
+                    {
+                        feedbackAudio[Random.Range(0, feedbackAudio.Count)].Play();
+                        spawnedParticle = Instantiate(catchParticle, transform.position, Quaternion.identity);
+                    }
+                }).OnComplete(() =>
+                {
+                    transform.localScale = Vector3.one * Random.Range(0.05f, 0.065f);
 
-                transform.localScale = new Vector3(0.05f, 0.05f, 0.5f);
+                    Vector2 randomPosition = Random.insideUnitCircle * Bolha.GetComponent<RadiusCircle>().radius / 2f;
 
-                Vector2 randomPosition = Random.insideUnitCircle * Bolha.GetComponent<RadiusCircle>().radius / 2f;
+                    transform.position = new Vector3(Bolha.position.x + randomPosition.x, Bolha.position.y + randomPosition.y, transform.position.z);
 
-                transform.position = new Vector3(Bolha.position.x + randomPosition.x, Bolha.position.y + randomPosition.y, transform.position.z);
+                    Material instance = GetComponent<SpriteRenderer>().material;
+                    GetComponent<SpriteRenderer>().material = instance;
 
-                int[] possibleOrders = { 4, 3, 2 };
-                int randomOrder = possibleOrders[Random.Range(0, possibleOrders.Length)];
-                renderer.sortingOrder = randomOrder;
+                    int[] possibleOrders = { 4, 3, 2 };
+                    int randomOrder = possibleOrders[Random.Range(0, possibleOrders.Length)];
+                    renderer.sortingOrder = randomOrder;
 
-                this.enabled = false;
+                    enabled = false;
+                });
             }
             else
             {
-                Destroy(gameObject);
+                if (currentTween == null)
+                currentTween = transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InOutQuad).OnStart(() =>
+                {
+                    if (spawnedParticle == null)
+                    {
+                        feedbackAudio[Random.Range(0, feedbackAudio.Count)].Play();
+                        spawnedParticle = Instantiate(catchParticle, transform.position, Quaternion.identity);
+                    }
+                }).OnComplete(() =>
+                {
+                    Destroy(gameObject);
+                });
             }
-            
-            //}
-
-            //SpeedController();
         }
         else
         {
-            transform.position += Vector3.down * fallSpeed * Time.deltaTime;
+            Vector3 targetPos = transform.position;
+            targetPos += Vector3.down * fallSpeed * Time.deltaTime;
+            targetPos += Vector3.right * currentLateralSpeed * Time.deltaTime;
 
-            transform.position += Vector3.right * currentLateralSpeed * Time.deltaTime;
+            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref currentVelocity, 1f * Time.deltaTime);
 
             ClampPositionWithinCamera();
 
@@ -121,7 +141,9 @@ public class Jellyfish : MonoBehaviour
     {
         collider.enabled = false;
         renderer.enabled = false;
+
         yield return new WaitForSeconds(3);
+
         collider.enabled = true;
         renderer.enabled = true;
     }
@@ -133,7 +155,7 @@ public class Jellyfish : MonoBehaviour
 
         Vector3 direction = Bolha.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+        // transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     void SpeedController()
@@ -161,10 +183,8 @@ public class Jellyfish : MonoBehaviour
     {
         while (true)
         {
-            // Define uma nova velocidade lateral aleatória
             currentLateralSpeed = Random.Range(-lateralSpeed, lateralSpeed);
 
-            // Espera um intervalo aleatório entre 2 e 4 segundos
             float waitTime = Random.Range(1f, 2f);
             yield return new WaitForSeconds(waitTime);
         }
@@ -175,13 +195,10 @@ public class Jellyfish : MonoBehaviour
         Vector3 position = transform.position;
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(position);
 
-        // Garante que o objeto esteja dentro dos limites da câmera
         if (viewportPosition.x <= 0.05f || viewportPosition.x >= 0.95f)
         {
-            // Inverte a direção lateral
             currentLateralSpeed = -currentLateralSpeed;
 
-            // Garante que o objeto não saia dos limites
             viewportPosition.x = Mathf.Clamp(viewportPosition.x, 0.05f, 0.95f);
             transform.position = mainCamera.ViewportToWorldPoint(viewportPosition);
         }

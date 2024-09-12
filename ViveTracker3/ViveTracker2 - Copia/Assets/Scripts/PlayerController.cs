@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] string TrackerName;
     [SerializeField] Transform Tracker;
     [SerializeField] bool MouseControlled;
+    [SerializeField] GameObject transitionParticle;
+
 
     void Start()
     {

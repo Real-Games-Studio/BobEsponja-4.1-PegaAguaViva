@@ -19,6 +19,7 @@ public class InGameCanvas : MonoBehaviour
     IEnumerator StartGame()
     {
         GameManager.Instance.startTime = JSONFile.Configclass.tempoDeJogo;
+        yield return new WaitForSeconds(0.7f);
         tres.SetActive(true);
         yield return new WaitForSeconds(1);
         tres.SetActive(false);
