@@ -4,52 +4,71 @@ using UnityEngine;
 
 public class NetColors : MonoBehaviour
 {
-    public GameObject rede1;
-    public GameObject rede2;
-    public GameObject rede3;
-    public GameObject rede4;
+    PlayerController rede;
+    bool done;
 
-    void Start()
+    void Update()
     {
-        Color rede1color;
-        Color rede2color;
-        Color rede3color;
-        Color rede4color;
+        if (!done)
+        {
+            Color rede1color;
+            Color rede2color;
+            Color rede3color;
+            Color rede4color;
 
-        if(ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede1, out rede1color))
-        {
-            rede1.GetComponent<Renderer>().sharedMaterial.color = rede1color;
-        }
-        else
-        {
-           Debug.LogError("Cor inválida para a rede 1");
-        }
+            rede = GetComponent<PlayerController>();
 
-        if(ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede2, out rede2color))
-        {
-            rede2.GetComponent<Renderer>().sharedMaterial.color = rede2color;
-        }
-        else
-        {
-           Debug.LogError("Cor inválida para a rede 2");
-        }
+            if (rede.TrackerID == 1 && rede.TrackerName != "")
+            {
+                if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede1, out rede1color))
+                {
+                    GameObject.Find(rede.TrackerName).transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede1color;
+                    done = true;
+                }
+                else
+                {
+                    Debug.LogError("Cor inválida para a rede 1");
+                }
+            }
 
-        if(ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede3, out rede3color))
-        {
-            rede3.GetComponent<Renderer>().sharedMaterial.color = rede3color;
-        }
-        else
-        {
-           Debug.LogError("Cor inválida para a rede 3");
-        }
+            if (rede.TrackerID == 2 && rede.TrackerName != "")
+            {
+                if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede2, out rede2color))
+                {
+                    GameObject.Find(rede.TrackerName).transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede2color;
+                    done = true;
+                }
+                else
+                {
+                    Debug.LogError("Cor inválida para a rede 2");
+                }
+            }
 
-        if(ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede4, out rede4color))
-        {
-            rede4.GetComponent<Renderer>().sharedMaterial.color = rede4color;
-        }
-        else
-        {
-           Debug.LogError("Cor inválida para a rede 4");
+            if (rede.TrackerID == 3 && rede.TrackerName != "")
+            {
+                if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede3, out rede3color))
+                {
+                    GameObject.Find(rede.TrackerName).transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede3color;
+                    done = true;
+                }
+                else
+                {
+                    Debug.LogError("Cor inválida para a rede 3");
+                }
+            }
+
+            if (rede.TrackerID == 4 && rede.TrackerName != "")
+            {
+                if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede4, out rede4color))
+                {
+                    GameObject.Find(rede.TrackerName).transform.GetChild(0).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede4color;
+                    done = true;
+                }
+                else
+                {
+                    Debug.LogError("Cor inválida para a rede 4");
+                }
+            }
         }
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] int TrackerID;
-    [SerializeField] string TrackerName;
+    [SerializeField] public int TrackerID;
+    [SerializeField] public string TrackerName = "";
     [SerializeField] Transform Tracker;
     [SerializeField] bool MouseControlled;
     [SerializeField] GameObject transitionParticle;

@@ -15872,6 +15872,7 @@ GameObject:
   - component: {fileID: 1625195766}
   - component: {fileID: 1625195765}
   - component: {fileID: 1625195767}
+  - component: {fileID: 1625195770}
   - component: {fileID: 1625195769}
   - component: {fileID: 1625195768}
   m_Layer: 0
@@ -15894,7 +15895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackerID: 1
-  TrackerName: LHR-01CCC576
+  TrackerName: 
   Tracker: {fileID: 0}
   MouseControlled: 0
   transitionParticle: {fileID: 942275455}
@@ -15905,7 +15906,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625195761}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -16024,7 +16025,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.475, y: 0.9}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.65
 --- !u!114 &1625195767
@@ -20842,6 +20843,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1625195770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625195761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43ae478c780c1f45bebbbafa0a8c966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1637765632
 GameObject:
   m_ObjectHideFlags: 0
@@ -26681,7 +26694,6 @@ GameObject:
   - component: {fileID: 1860816381}
   - component: {fileID: 1860816380}
   - component: {fileID: 1860816382}
-  - component: {fileID: 1860816383}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -26746,22 +26758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b63b5acf6fa3554eb1fe3f6730723b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1860816383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860816379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43ae478c780c1f45bebbbafa0a8c966, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rede1: {fileID: 2106544507}
-  rede2: {fileID: 0}
-  rede3: {fileID: 0}
-  rede4: {fileID: 0}
 --- !u!1 &1896955408
 GameObject:
   m_ObjectHideFlags: 0
@@ -28454,11 +28450,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9011134808358064963, guid: 871af2e6fc9475944bf2c30725a45718, type: 3}
   m_PrefabInstance: {fileID: 482307079}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2106544507 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7231599720332987227, guid: a11d5464d0cb1f845b576b412ec7caea, type: 3}
-  m_PrefabInstance: {fileID: 655126948}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2126706969
 GameObject:
   m_ObjectHideFlags: 0
@@ -28473,6 +28464,7 @@ GameObject:
   - component: {fileID: 2126706971}
   - component: {fileID: 2126706970}
   - component: {fileID: 2126706975}
+  - component: {fileID: 2126706978}
   - component: {fileID: 2126706977}
   - component: {fileID: 2126706976}
   m_Layer: 0
@@ -28541,7 +28533,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.475, y: 0.9}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.65
 --- !u!114 &2126706972
@@ -28557,7 +28549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackerID: 2
-  TrackerName: LHR-01CC074A
+  TrackerName: 
   Tracker: {fileID: 0}
   MouseControlled: 0
   transitionParticle: {fileID: 942275455}
@@ -28568,7 +28560,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126706969}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -33443,6 +33435,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2126706978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126706969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43ae478c780c1f45bebbbafa0a8c966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2138302400
 GameObject:
   m_ObjectHideFlags: 0
