@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject TimeUpScreen;
     public GameObject CongratulationsScreen;
+    public TextMeshProUGUI finalScore;
 
     public Image timer;
 
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         TimeUpScreen.SetActive(false);
         CongratulationsScreen.SetActive(true);
+        finalScore.text = score.ToString() + " PONTOS";
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
     }

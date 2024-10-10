@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] int TrackerID;
     [SerializeField] string TrackerName;
     [SerializeField] Transform Tracker;
     [SerializeField] bool MouseControlled;
@@ -12,6 +13,22 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        if (TrackerID == 1)
+        {
+            TrackerName = JSONFile.Configclass.serialRede1;
+        }
+        if (TrackerID == 2) {
+            TrackerName = JSONFile.Configclass.serialRede2;
+        }
+        if (TrackerID == 3)
+        {
+            TrackerName = JSONFile.Configclass.serialRede3;
+        }
+        if (TrackerID == 4)
+        {
+            TrackerName = JSONFile.Configclass.serialRede4;
+        }
+        
         Tracker = GameObject.Find(TrackerName).transform.GetChild(2);
     }
 

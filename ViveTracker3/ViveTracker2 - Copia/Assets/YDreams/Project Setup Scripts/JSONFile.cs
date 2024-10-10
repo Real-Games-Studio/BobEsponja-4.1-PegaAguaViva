@@ -45,5 +45,13 @@ public class configclass
     public float tempoDeSpawnMinimo;
     public float tempoDeSpawnMaximo;
     public float tamanhoCamera;
+    public string CorRede1;
+    public string CorRede2;
+    public string CorRede3;
+    public string CorRede4;
+    public string serialRede1;
+    public string serialRede2;
+    public string serialRede3;
+    public string serialRede4;
 }
 
