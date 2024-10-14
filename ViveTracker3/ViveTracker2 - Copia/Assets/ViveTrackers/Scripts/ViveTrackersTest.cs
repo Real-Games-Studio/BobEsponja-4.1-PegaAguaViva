@@ -100,7 +100,8 @@ namespace ViveTrackers
 				renderer.transform.localRotation = Quaternion.identity;
 				renderer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 				renderer.GetComponent<Renderer>().material.color = color;
-			}
+				renderer.GetComponent<Renderer>().enabled = false;
+            }
 		}
 
 		private void _OnTrackerCalibrated(ViveTracker pTracker)
