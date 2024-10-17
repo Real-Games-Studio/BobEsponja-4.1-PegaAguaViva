@@ -15,12 +15,12 @@
     "tempoDeSpawnMinimo": 0.5,
     "tempoDeSpawnMaximo": 1,
     "tamanhoCamera": 0.68,
-    "CorRede1": "#FF2D00",
-    "CorRede2": "#0049FF",
-    "CorRede3": "#32FF00",
-    "CorRede4": "#FF00E0",
+    "CorRede1": "#F24A42",
+    "CorRede2": "#4E6DE6",
+    "CorRede3": "#3EC862",
+    "CorRede4": "#FFD235",
     "serialRede1": "LHR-01CCC576",
     "serialRede2": "LHR-01CC074A",
-    "serialRede3": "",
-    "serialRede4": ""
+    "serialRede3": "LHR-0121D730",
+    "serialRede4": "LHR-0DC0CC0E"
 }

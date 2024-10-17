@@ -22,7 +22,7 @@ public class NetColors : MonoBehaviour
             {
                 if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede1, out rede1color))
                 {
-                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede1color;
+                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().material.color = rede1color;
                     done = true;
                 }
                 else
@@ -35,7 +35,7 @@ public class NetColors : MonoBehaviour
             {
                 if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede2, out rede2color))
                 {
-                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede2color;
+                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().material.color = rede2color;
                     done = true;
                 }
                 else
@@ -48,7 +48,7 @@ public class NetColors : MonoBehaviour
             {
                 if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede3, out rede3color))
                 {
-                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede3color;
+                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().material.color = rede3color;
                     done = true;
                 }
                 else
@@ -61,7 +61,7 @@ public class NetColors : MonoBehaviour
             {
                 if (ColorUtility.TryParseHtmlString(JSONFile.Configclass.CorRede4, out rede4color))
                 {
-                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().sharedMaterial.color = rede4color;
+                    GameObject.Find(rede.TrackerName).transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<Renderer>().material.color = rede4color;
                     done = true;
                 }
                 else
