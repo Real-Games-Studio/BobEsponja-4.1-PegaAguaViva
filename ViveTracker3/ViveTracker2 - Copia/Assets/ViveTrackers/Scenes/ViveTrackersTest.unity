@@ -26168,7 +26168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5ce83cee4db904eb45232ae2092c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllersIdle: 0000
+  controllersIdle: 00000000
   idle: {fileID: 1713739757}
 --- !u!4 &1658611786
 Transform:
