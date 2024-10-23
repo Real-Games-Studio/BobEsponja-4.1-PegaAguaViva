@@ -10,6 +10,7 @@ public class InGameCanvas : MonoBehaviour
     [SerializeField] GameObject valendo;
     [SerializeField] GameObject tempo;
     [SerializeField] GameObject pontos;
+    [SerializeField] AudioSource countdownSound;
 
     void OnEnable()
     {
@@ -20,6 +21,7 @@ public class InGameCanvas : MonoBehaviour
     {
         GameManager.Instance.startTime = JSONFile.Configclass.tempoDeJogo;
         yield return new WaitForSeconds(0.7f);
+        countdownSound.Play();
         tres.SetActive(true);
         yield return new WaitForSeconds(1);
         tres.SetActive(false);
