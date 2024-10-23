@@ -2311,7 +2311,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_ConstantMin: 5
-      m_ConstantMax: 30
+      m_ConstantMax: 45
     xCurve:
       m_Mode: 0
       m_CurveMultiplier: 0
@@ -3424,7 +3424,7 @@ MonoBehaviour:
   _rateOverDistance: 0
   _bursts:
   - time: 0
-    count: 100
+    count: 200
     used: 1
   _particleTrailRenderer: {fileID: 0}
   _trailModule:
@@ -3733,7 +3733,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_ConstantMin: 5
-      m_ConstantMax: 30
+      m_ConstantMax: 45
     xCurve:
       m_Mode: 0
       m_CurveMultiplier: 0
@@ -4846,7 +4846,7 @@ MonoBehaviour:
   _rateOverDistance: 0
   _bursts:
   - time: 0
-    count: 100
+    count: 200
     used: 1
   _particleTrailRenderer: {fileID: 0}
   _trailModule:
@@ -5427,6 +5427,7 @@ GameObject:
   - component: {fileID: 346696401}
   - component: {fileID: 346696400}
   - component: {fileID: 346696399}
+  - component: {fileID: 346696402}
   m_Layer: 5
   m_Name: TimeUp (2)
   m_TagString: Untagged
@@ -5508,6 +5509,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346696397}
   m_CullTransparentMesh: 1
+--- !u!114 &346696402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346696397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08b121ba77720b43b35d19c055683f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRot: 5
+  duration: 1.5
 --- !u!1 &361870622
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,6 +5849,8 @@ GameObject:
   - component: {fileID: 382242128}
   - component: {fileID: 382242130}
   - component: {fileID: 382242129}
+  - component: {fileID: 382242132}
+  - component: {fileID: 382242131}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -5957,6 +5974,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382242127}
   m_CullTransparentMesh: 1
+--- !u!114 &382242131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382242127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08b121ba77720b43b35d19c055683f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRot: 15
+  duration: 0.5
+--- !u!114 &382242132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382242127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90b0e528a8395a4193a6ef4f491c6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScale: {x: 0, y: 0, z: 0}
+  endScale: {x: 1, y: 1, z: 1}
+  interval: 1
+  intialDelay: 0
+  ease: 8
 --- !u!1 &406234476
 GameObject:
   m_ObjectHideFlags: 0
@@ -12615,7 +12663,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_ConstantMin: 5
-      m_ConstantMax: 30
+      m_ConstantMax: 45
     xCurve:
       m_Mode: 0
       m_CurveMultiplier: 0
@@ -13728,7 +13776,7 @@ MonoBehaviour:
   _rateOverDistance: 0
   _bursts:
   - time: 0
-    count: 100
+    count: 200
     used: 1
   _particleTrailRenderer: {fileID: 0}
   _trailModule:
@@ -20457,6 +20505,7 @@ GameObject:
   - component: {fileID: 1383750118}
   - component: {fileID: 1383750117}
   - component: {fileID: 1383750116}
+  - component: {fileID: 1383750119}
   m_Layer: 5
   m_Name: TimeUp (2)
   m_TagString: Untagged
@@ -20538,6 +20587,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383750114}
   m_CullTransparentMesh: 1
+--- !u!114 &1383750119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383750114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08b121ba77720b43b35d19c055683f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRot: 5
+  duration: 2.5
 --- !u!1 &1392787306
 GameObject:
   m_ObjectHideFlags: 0
@@ -26355,6 +26418,7 @@ GameObject:
   - component: {fileID: 1691736771}
   - component: {fileID: 1691736770}
   - component: {fileID: 1691736769}
+  - component: {fileID: 1691736772}
   m_Layer: 5
   m_Name: TimeUp (1)
   m_TagString: Untagged
@@ -26436,6 +26500,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691736767}
   m_CullTransparentMesh: 1
+--- !u!114 &1691736772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691736767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08b121ba77720b43b35d19c055683f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRot: 5
+  duration: 1.5
 --- !u!1 &1708918042
 GameObject:
   m_ObjectHideFlags: 0
@@ -37149,7 +37227,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_ConstantMin: 5
-      m_ConstantMax: 30
+      m_ConstantMax: 45
     xCurve:
       m_Mode: 0
       m_CurveMultiplier: 0
@@ -38262,7 +38340,7 @@ MonoBehaviour:
   _rateOverDistance: 0
   _bursts:
   - time: 0
-    count: 100
+    count: 200
     used: 1
   _particleTrailRenderer: {fileID: 0}
   _trailModule:

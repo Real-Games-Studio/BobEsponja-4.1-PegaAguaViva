@@ -29,12 +29,17 @@ public class Idle : MonoBehaviour
     {
         disablePass = true;
         particle.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+        tutorialScreen.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        particle.SetActive(false);
         
         // Tutorial
-        tutorialScreen.SetActive(true);
         tutorialSprite.Play("Tutorial");
         yield return new WaitForSeconds(7.2f);
+
+        particle.SetActive(true);
+        yield return new WaitForSeconds(1f);
 
         // Object To Start
         tutorialScreen.SetActive(false);
@@ -47,6 +52,10 @@ public class Idle : MonoBehaviour
             gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             gameObject.GetComponent<CanvasGroup>().alpha = 0;
         }
+        
+        yield return new WaitForSeconds(1f);
+        particle.SetActive(false);
+
         yield return new WaitForSeconds(0.5f);
         
         instructionsScreen.GetComponent<Collider2D>().enabled = true;
