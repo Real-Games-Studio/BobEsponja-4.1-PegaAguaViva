@@ -5,55 +5,80 @@ using UnityEngine.SceneManagement;
 
 public class IdleController : MonoBehaviour
 {
-    Vector2 initialPosition;
     private Camera mainCamera;
     [SerializeField] int controllerNumber;
+    [SerializeField] Vector2 initialPosition;
     [SerializeField] float distanceToMove = 0.1f;
     [SerializeField] Idle idleScreen;
     [SerializeField] float idleTime = 5;
     [SerializeField] float timeSinceLastMove = 0;
     [SerializeField] IdleManager IM;
+    bool canCheckForMovement;
 
     private void Start()
     {
         mainCamera = Camera.main;
+        StartCoroutine(waitForCheck());
     }
 
     public void ResetPosition()
     {
         initialPosition = transform.position;
+        Debug.Log("Updating controller "+ controllerNumber+" initialPosition to " + initialPosition);
     }
 
     void Update()
     {
-        if (initialPosition == null || initialPosition == Vector2.zero)
+        if (initialPosition == new Vector2(999,999))
         {
             ResetPosition();
         }
+    }
 
-        float distanceMoved = Vector2.Distance(transform.position, initialPosition);
-
-        if (distanceMoved > distanceToMove)
+    private void LateUpdate()
+    {
+        if (canCheckForMovement)
         {
-            if (IsWithinHorizontalBounds())
-            {
-                idleScreen.StartGame();
-            }
+            float distanceMoved = Vector2.Distance(transform.position, initialPosition);
 
-            timeSinceLastMove = 0;
-            IM.controllersIdle[controllerNumber] = false;
-            ResetPosition();
+            if (distanceMoved > distanceToMove)
+            {
+                if (IsWithinHorizontalBounds())
+                {
+                    Debug.Log(controllerNumber + " = " + distanceMoved + ". Position is " + transform.position + ", initialPos is " + initialPosition);
+                    idleScreen.StartGame();
+                }
+
+                timeSinceLastMove = 0;
+                IM.controllersIdle[controllerNumber] = false;
+                ResetPosition();
+            }
+            else
+            {
+                timeSinceLastMove += Time.deltaTime;
+
+                if (timeSinceLastMove >= idleTime)
+                {
+                    //idleScreen.ResetGame();
+                    IM.controllersIdle[controllerNumber] = true;
+                }
+            }
         }
         else
         {
-            timeSinceLastMove += Time.deltaTime;
+            float distanceMoved = Vector2.Distance(transform.position, initialPosition);
 
-            if (timeSinceLastMove >= idleTime)
+            if (distanceMoved > distanceToMove)
             {
-                //idleScreen.ResetGame();
-                IM.controllersIdle[controllerNumber] = true;
+                ResetPosition();
             }
         }
+    }
+
+    IEnumerator waitForCheck()
+    {
+        yield return new WaitForSeconds(1);
+        canCheckForMovement = true;
     }
 
     bool IsWithinHorizontalBounds()

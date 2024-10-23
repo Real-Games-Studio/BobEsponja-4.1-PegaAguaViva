@@ -8025,6 +8025,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8286055073588187728, guid: a11d5464d0cb1f845b576b412ec7caea, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20324,6 +20328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerNumber: 3
+  initialPosition: {x: 999, y: 999}
   distanceToMove: 0.1
   idleScreen: {fileID: 1713739757}
   idleTime: 5
@@ -21129,6 +21134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerNumber: 0
+  initialPosition: {x: 999, y: 999}
   distanceToMove: 0.1
   idleScreen: {fileID: 1713739757}
   idleTime: 5
@@ -26882,6 +26888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerNumber: 0
+  initialPosition: {x: 0, y: 0}
   distanceToMove: 0.1
   idleScreen: {fileID: 1713739757}
   idleTime: 5
@@ -36926,6 +36933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerNumber: 2
+  initialPosition: {x: 999, y: 999}
   distanceToMove: 0.1
   idleScreen: {fileID: 1713739757}
   idleTime: 5
@@ -38814,6 +38822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerNumber: 1
+  initialPosition: {x: 999, y: 999}
   distanceToMove: 0.1
   idleScreen: {fileID: 1713739757}
   idleTime: 5
